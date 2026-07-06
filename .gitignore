@@ -18,9 +18,9 @@ workflow/results/
 *.png
 *.svg
 *.pdf
-
-
+*.tsv
+*.txt
+*.bed
 __pycache__/
 *.pyc
 
-workflow/figures/
