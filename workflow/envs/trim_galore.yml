@@ -1,0 +1,10 @@
+name: trim_galore_env
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - trim-galore
+  - fastqc
+  - cutadapt
+  - perl
+  - python>=3.6

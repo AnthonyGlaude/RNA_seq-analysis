@@ -1,0 +1,17 @@
+{
+  "path": {
+    "fastq": "data/references/fastq/",
+    "RNAseq1_dir": "../../data",
+    "RNAseq_dir": "../../data/data",
+    "chrNameLength": "data/references/star_index/chrNameLength.txt",
+    "star_index": "data/references/star_index/",
+    "transcriptome": "data/references/transcriptome.fa",
+    "snpeff":"/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v3/Core/snpeff/5.2/exec/snpeff"
+
+    
+  },
+  "download": {
+    "human_gtf": "https://ftp.ensembl.org/pub/release-113/gtf/homo_sapiens/Homo_sapiens.GRCh38.113.gtf.gz",
+    "human_genome_fa": "https://ftp.ensembl.org/pub/release-113/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz"
+  }
+}

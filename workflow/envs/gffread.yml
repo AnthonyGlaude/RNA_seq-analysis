@@ -1,0 +1,6 @@
+name: gffread_env
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - gffread

@@ -1,0 +1,45 @@
+configfile: "../config/config.json"
+import os
+
+rna_dir = config["path"]["RNAseq_dir"]
+id_list = sorted([
+    d for d in os.listdir(rna_dir)
+    if os.path.isdir(os.path.join(rna_dir, d))
+])
+
+include: "rules/I_download_genome.smk"  
+include: "rules/II_preprocess.smk"
+include: "rules/III_star.smk"
+include: "rules/III_kallisto.smk"
+include: "rules/IV_calling_variants.smk"
+include: "rules/IV_calling_genefusion.smk"
+include: "rules/V_variant_split_apply_merge.smk"
+include: "rules/IV_DRPs.smk"
+
+rule all:
+    input:
+        expand("data/qc/{id}/{id}_1_fastqc.html", id=id_list),
+        expand("data/trim_galore/{id}/{id}_1_val_1.fq.gz", id=id_list),
+        expand("data/qc_after_trim/{id}/{id}_1_val_1_fastqc.html", id=id_list),
+        expand("results/STAR/{id}/Aligned.sortedByCoord.out.bam", id=id_list),
+        expand("results/STAR_fusion/{id}/Chimeric.out.junction", id=id_list),
+        expand("results/kallisto/{id}/abundance.tsv", id=id_list),
+        expand("results/fusion_gene/{id}/fusions.pdf", id=id_list),
+        expand("results/star_fusion/{id}/star-fusion.fusion_predictions.abridged.tsv", id=id_list),
+        expand("results/variants/{id}/20QC_variant.vcf", id=id_list),
+        expand("results/variants/{id}/split_vcf/1_to_2.vcf", id=id_list),
+        expand("results/final/{id}/combined_transcripts.fa", id=id_list),
+
+
+rule download_genome:
+    input:
+        gtf = 'data/references/gtf/Homo_sapiens.GRCh38.113.gtf',
+        genome = 'data/references/genome_fa/homo_sapiens_genome.fa',
+        done = "data/references/snpeff/snpEff/.install_done",
+        done2 = "data/references/snpeff/snpEff/data/GRCh38.115/.download_done",
+        done3  = "data/references/arriba/.download_done",
+
+rule quantification: 
+    input:
+        build_transcriptome = "data/references/kallisto/transcriptome.fa",
+        filtered_abundance = "results/kallisto/{id}/abundance_filtered.tsv",  # Contient seulement les gènes quantifiés

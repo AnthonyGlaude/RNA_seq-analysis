@@ -1,0 +1,190 @@
+__default__:
+    job-name: "SM.{rule}"
+    nodes: 1
+    cpus-per-task: 2
+    mem: 4G
+    time: 0-0:30:00
+    mail-user: "anthony.glaude@usherbrooke.ca"
+    mail-type: FAIL
+
+fastqc:
+    cpus-per-task: 4    
+    mem: 10G
+    time: 0-0:50:00
+
+trim_reads:
+    cpus-per-task: 6
+    mem: 32G
+    time: 0-2:00:00
+
+qc_fastq:
+    cpus-per-task: 6
+    mem: 10G
+    time: 0-0:50:00
+
+star_index:
+    cpus-per-task: 32   
+    mem: 64G
+    time: 0-0:45:00
+
+build_star_index_ctat:
+    cpus-per-task: 32   
+    mem: 64G
+    time: 0-0:45:00
+
+star_alignreads:
+    cpus-per-task: 32
+    mem: 120G
+    time: 0-2:00:00
+
+build_star_index_ctat:
+    cpus-per-task: 32   
+    mem: 64G
+    time: 0-0:45:00
+
+star_chimeric:
+    cpus-per-task: 32
+    mem: 120G
+    time: 0-2:00:00
+
+rule index_star_chimeric_bam:
+    cpus-per-task: 2
+    mem: 8G
+    time: 0-0:30:00
+
+build_transcriptome:
+    cpus-per-task: 1
+    mem: 8G
+    time: 0-00:10:00
+
+kallisto_index:
+    cpus-per-task: 4
+    mem: 12G
+    time: 0-0:20:00
+
+kallisto_quant:
+    cpus-per-task: 16
+    mem: 40G
+    time: 0-01:00:00
+
+filter_abundance:
+    cpus-per-task: 1
+    mem: 2G
+    time: 0-0:05:00
+
+build_filtered_transcriptome:
+    cpus-per-task: 2
+    mem: 8G
+    time: 0-0:10:00
+
+rule index_genome:
+    cpus-per-task: 2
+    mem: 8G
+    time: 0-0:30:00
+
+create_targets:
+    cpus-per-task: 2
+    mem: 8G
+    time: 0-0:30:00
+
+rule index_bam:
+    cpus-per-task: 2
+    mem: 8G
+    time: 0-0:30:00
+
+call_variants:
+    cpus-per-task: 32
+    mem: 64G
+    time: 0-02:00:00
+
+snpeff_annotation:
+    cpus-per-task: 1
+    mem: 12G
+    time: 0-01:00:00
+
+filter_variants:
+    cpus-per-task: 1
+    mem: 1G
+    time: 0-00:03:00
+
+call_fusion_gene:
+    cpus-per-task: 8
+    mem: 16G
+    time: 0-00:30:00
+
+draw_fusions:
+    cpus-per-task: 2
+    mem: 8G
+    time: 0-01:00:00
+
+star_fusion:
+    cpus-per-task: 32
+    mem: 120G
+    time: 0-2:00:00
+
+build_exon_dataframe:
+  cpus-per-task: 1
+  mem: 8G
+  time: "00:30:00"
+
+compress_vcf_filtered:
+  cpus-per-task: 1
+  mem: 2G
+  time: "00:05:00"
+
+split_transcripts_all:
+  cpus-per-task: 1
+  mem: 6G
+  time: "00:30:00"
+
+split_vcf_1_to_4:
+  cpus-per-task: 1
+  mem: 4G
+  time: "00:05:00"
+
+split_vcf_5_to_9:
+  cpus-per-task: 1
+  mem: 4G
+  time: "00:05:00"
+
+split_vcf_10_to_16:
+  cpus-per-task: 1
+  mem: 4G
+  time: "00:05:00"
+
+split_vcf_rest:
+  cpus-per-task: 1
+  mem: 2G
+  time: "00:05:00"
+
+
+apply_variants_1_to_4:
+  cpus-per-task: 3
+  mem: 18G
+  time: "0-01:00:00"
+
+apply_variants_5_to_9:
+  cpus-per-task: 3
+  mem: 16G
+  time: "0-01:00:00"
+
+apply_variants_10_to_16:
+  cpus-per-task: 3
+  mem: 18G
+  time: "0-01:30:00"
+
+apply_variants_rest:
+  cpus-per-task: 3
+  mem: 16G
+  time: "0-01:00:00"
+
+fusion_transcripts:
+  cpus-per-task: 1
+  mem: 20G
+  time: "00:45:00"
+
+#filter_transcripts:
+#  cpus-per-task: 1
+#  mem: 4G
+#  time: "00:05:00"
+

@@ -1,0 +1,7 @@
+name: arriba_env
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - arriba=2.5.1
+  - libdeflate=1.22

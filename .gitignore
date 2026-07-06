@@ -1,0 +1,26 @@
+# Snakemake / outputs
+workflow/.snakemake/
+workflow/data/
+workflow/logs/
+workflow/reference/
+workflow/results/
+
+*.fa
+*.fasta
+*.fq
+*.fastq
+*.bam
+*.sam
+*.vcf
+*.bcf
+*.gz
+*.zip
+*.png
+*.svg
+*.pdf
+
+
+__pycache__/
+*.pyc
+
+workflow/figures/

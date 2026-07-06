@@ -1,0 +1,8 @@
+name: star_env
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - star
+  - python=3.8
