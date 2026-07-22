@@ -113,3 +113,24 @@ rule star_fusion:
             --CPU {threads} \
             > {log} 2>&1
         """
+
+rule apply_transcriptome_arriba_star_fusion:
+    """Create fusion transcripts from Arriba and STAR-Fusion predictions."""
+    input:
+        arriba_fusion=rules.call_fusion_gene.output.fusions,
+        star_fusion=rules.star_fusion.output.predictions,
+        gtf=config["reference"]["gtf"],
+        transcriptome_fasta=rules.build_transcriptome.output.transcriptome,
+        kallisto_abundance=rules.kallisto_quant.output.abundance_tsv
+    output:
+        fusions_transcripts="results/final/{id}/fusion_transcripts.fa",
+        summary="results/final/{id}/fusion_transcripts_summary.tsv"
+    params:
+        min_tpm=0.0,
+        allow_intronic_snap=True
+    conda:
+        "../envs/python.yml"
+    script:
+        "../scripts/IV_creation_fusion_transcript.py"
+
+
