@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 import sys
 from pathlib import Path
@@ -106,6 +104,7 @@ try:
         snakemake.input.mutated_output_fasta2,
         snakemake.input.mutated_output_fasta3,
         snakemake.input.mutated_output_fasta4,
+        snakemake.input.fusions_transcript
     ]
 
     combined_output_fasta = snakemake.output.combined_transcripts
